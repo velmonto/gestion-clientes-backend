@@ -33,17 +33,17 @@ public class Cliente {
 	private String phone;
 	
 	@Column(name = "startDate", nullable = false)
-	private Date startDate;
+	private LocalDateTime startDate;
 	
 	@Column(name = "endDate", nullable = false)
-	private Date endDate;
+	private LocalDateTime endDate;
 	
 	public Cliente() {
 		
 	}
 
-	public Cliente(Long id, String sharedKey, String businessId, String email, String phone, Date startDate,
-			Date endDate) {
+	public Cliente(Long id, String sharedKey, String businessId, String email, String phone, LocalDateTime startDate,
+			LocalDateTime endDate) {
 		this.id = id;
 		this.sharedKey = sharedKey;
 		this.businessId = businessId;
@@ -93,19 +93,19 @@ public class Cliente {
 		this.phone = phone;
 	}
 
-	public Date getStartDate() {
+	public LocalDateTime getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(Date startDate) {
+	public void setStartDate(LocalDateTime startDate) {
 		this.startDate = startDate;
 	}
 
-	public Date getEndDate() {
+	public LocalDateTime getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(Date endDate) {
+	public void setEndDate(LocalDateTime endDate) {
 		this.endDate = endDate;
 	}
 	

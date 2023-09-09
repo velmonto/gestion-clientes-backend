@@ -1,5 +1,6 @@
 package co.com.gestion.clientes.controlador;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +28,12 @@ public class ClienteControlador {
 		return clienteRepositorio.findAll();
 	}
 	
+	/*Este metodo sirve para guardar el empleado*/
 	@PostMapping("/clientes")
 	public Cliente guardarCliente(@RequestBody Cliente cliente) {
+		cliente.setEndDate(LocalDateTime.now());
+		cliente.setStartDate(LocalDateTime.now());
+		cliente.setSharedKey(cliente.getBusinessId().substring(0));
 		return clienteRepositorio.save(cliente);
 	}
 }
