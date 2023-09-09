@@ -4,13 +4,17 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import co.com.gestion.clientes.excepciones.ResourceNotFoundException;
 import co.com.gestion.clientes.model.Cliente;
 import co.com.gestion.clientes.repositorio.ClienteRepositorio;
 
@@ -31,9 +35,15 @@ public class ClienteControlador {
 	/*Este metodo sirve para guardar el empleado*/
 	@PostMapping("/clientes")
 	public Cliente guardarCliente(@RequestBody Cliente cliente) {
-		cliente.setEndDate(LocalDateTime.now());
-		cliente.setStartDate(LocalDateTime.now());
-		cliente.setSharedKey(cliente.getBusinessId().substring(0));
+		String[] letras = cliente.getBusinessId().split(" ");
+		cliente.setSharedKey((letras[0].charAt(0))+(letras[1]));
 		return clienteRepositorio.save(cliente);
 	}
+	
+	@GetMapping("/clientes/{id}")
+	public ResponseEntity<Cliente> obtenerClientePorId(@PathVariable Long id){
+		Cliente cliente = clienteRepositorio.findById(id).orElseThrow(() -> new ResourceNotFoundException("No se encontro el cliente con id: "+id));
+		return ResponseEntity.ok(cliente);
+	}
+	
 }
