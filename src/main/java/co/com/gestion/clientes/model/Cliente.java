@@ -53,7 +53,7 @@ public class Cliente {
 		return id;
 	}
 
-	public void setId() {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -104,7 +104,5 @@ public class Cliente {
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
-	
-	
-	
+
 }

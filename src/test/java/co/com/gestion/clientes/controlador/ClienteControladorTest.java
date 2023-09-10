@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.http.ResponseEntity;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -32,12 +33,34 @@ class ClienteControladorTest {
         cliente.setPhone("3219876543");
         cliente.setBusinessId("Daniel Velasquez");
         cliente.setSharedKey("DVelasquez");
-        cliente.setId();
+        cliente.setId(Long.parseLong("1"));
     }
 
     @Test
     void listarTodosLosClientes() {
         when(clienteControlador.listarTodosLosClientes()).thenReturn(Arrays.asList(cliente));
         assertNotNull(clienteControlador.listarTodosLosClientes());
+    }
+
+    @Test
+    void guardarCliente() {
+        when(clienteControlador.guardarCliente(cliente)).thenReturn(cliente);
+        assertNotNull(clienteControlador.guardarCliente(cliente));
+    }
+
+    @Test
+    void obtenerClientePorId() {
+        when(clienteControlador.obtenerClientePorId(cliente.getId())).thenReturn(ResponseEntity.ok(cliente));
+        assertNotNull(clienteControlador.obtenerClientePorId(cliente.getId()));
+    }
+
+    @Test
+    void actualizarCliente() {
+        when(clienteControlador.actualizarCliente(cliente.getId(), cliente)).thenReturn(ResponseEntity.ok(cliente));
+        assertNotNull(clienteControlador.actualizarCliente(cliente.getId(), cliente));
+    }
+
+    @Test
+    void eliminarCliente() {
     }
 }
