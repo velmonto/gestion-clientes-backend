@@ -8,8 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import lombok.Data;
-
 @Entity
 @Table(name="clientes")
 public class Cliente {
@@ -55,7 +53,7 @@ public class Cliente {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId() {
 		this.id = id;
 	}
 
