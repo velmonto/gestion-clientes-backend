@@ -19,3 +19,8 @@ este servicio rest para cargar y enviar la información.
 - Angular
 - Boostrap 5
 - Junit
+
+- ## _Coverage_
+<p align="center"> 
+  <img src="coverage.png">
+</p>
