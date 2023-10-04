@@ -8,4 +8,6 @@ import co.com.gestion.clientes.model.Cliente;
 @Repository
 public interface ClienteRepositorio extends JpaRepository<Cliente, Long>{
 
+    public Cliente getClienteBySharedKey(String sharedKey);
+
 }
